@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const chalk = require('chalk')
 const ejs = require('ejs')
 const rimraf = require('rimraf')
 const mkdirp = require('mkdirp')
@@ -8,6 +9,8 @@ const sourceDirectory = 'dist/_nuxt'
 const destDirectory = 'build'
 
 try {
+  console.log(chalk.blue('Start') + ' clasp-build')
+
   rimraf.sync(destDirectory)
   mkdirp(destDirectory)
 
@@ -15,15 +18,10 @@ try {
 
   // GASで読み込むためにjsをhtmlに変換
   filenames.forEach((fileName) => {
-    fs.readFile(path.join(sourceDirectory, fileName), 'utf8', (err, data) => {
-      if (err) {
-        throw err
-      }
-
-      const writeData = `<script> ${data} </script>`
-      fs.writeFileSync(path.join(destDirectory, fileName.replace('.js', '.html')), writeData)
-      console.log('wrote ' + fileName)
-    })
+    const data = fs.readFileSync(path.join(sourceDirectory, fileName), 'utf8')
+    const writeData = `<script> ${data} </script>`
+    fs.writeFileSync(path.join(destDirectory, fileName.replace('.js', '.html')), writeData)
+    console.log(`Wrote ${fileName}`)
   })
 
   // index.htmlを生成して上書き
@@ -40,7 +38,9 @@ try {
     `
   const html = ejs.render(templateHtml, { filenames: filenames.map(f => f.replace('.js', '')) })
   fs.writeFileSync(path.join(destDirectory, 'index.html'), html)
-  console.log('wrote index.html')
+  console.log(`Wrote index.html`)
 } catch (e) {
-  console.log(e)
+  console.log(chalk.red(e))
 }
+
+console.log(chalk.green(`Success`) + ' clasp-build')
