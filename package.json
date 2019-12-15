@@ -6,7 +6,11 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "npm-run-all build:nuxt build:clasp",
+    "build:nuxt": "nuxt build",
+    "build:clasp": "npm-run-all build:clasp:build build:clasp:copy",
+    "build:clasp:build": "node clasp-build",
+    "build:clasp:copy": "cpx 'gas/*' build",
     "start": "nuxt start",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
