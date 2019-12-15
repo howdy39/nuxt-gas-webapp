@@ -1,26 +1,30 @@
 # nuxt-gas-webapp
 
-> My beautiful Nuxt.js project
+Nuxt.js with Google Apps Script HTML Service
+
+
+## Prerequisites
+
+First download and install `clasp`
+
+[google/clasp: 🔗 Command Line Apps Script Projects](https://github.com/google/clasp)
+
 
 ## Build Setup
 
 ``` bash
+# change your project id
+
 # install dependencies
 $ yarn install
 
 # serve with hot reload at localhost:3000
 $ yarn dev
 
-# build for production and launch server
+# build for production and deploy google apps script
 $ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
+$ clasp push
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
-
-## Library
-[ejs: Embedded JavaScript templates](https://github.com/mde/ejs)
