@@ -9,11 +9,11 @@ First download and install `clasp`
 
 [google/clasp: 🔗 Command Line Apps Script Projects](https://github.com/google/clasp)
 
-
 ## Build Setup
 
 ``` bash
 # change your project id
+$ vi clasp.json # change your scriptId
 
 # install dependencies
 $ yarn install
