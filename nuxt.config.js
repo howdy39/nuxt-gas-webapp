@@ -64,8 +64,9 @@ export default {
       routes.push({
         name: 'custom',
         path: '*',
-        component: resolve(__dirname, 'pages/index.vue')
+        component: resolve(__dirname, 'nuxt/pages/index.vue')
       })
     }
-  }
+  },
+  srcDir: 'nuxt/'
 }
