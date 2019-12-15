@@ -2,13 +2,13 @@
   <div class="container">
     <div>
       <h1 class="title">
-        Dev ページ
+        Dev ページです
       </h1>
       <nuxt-link
         to="index"
         class="button--grey"
       >
-        dev
+        indexページ
       </nuxt-link>
     </div>
   </div>
