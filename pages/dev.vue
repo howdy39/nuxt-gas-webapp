@@ -8,7 +8,7 @@
         to="index"
         class="button--grey"
       >
-        indexページ
+        indexページへ
       </nuxt-link>
     </div>
   </div>
