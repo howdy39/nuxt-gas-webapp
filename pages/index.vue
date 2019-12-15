@@ -23,6 +23,12 @@
         >
           GitHub
         </a>
+        <nuxt-link
+          to="dev"
+          class="button--grey"
+        >
+          dev
+        </nuxt-link>
       </div>
     </div>
   </div>
