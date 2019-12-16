@@ -5,7 +5,7 @@
         Dev ページです
       </h1>
       <nuxt-link
-        to="index"
+        to="/"
         class="button--grey"
       >
         indexページへ
