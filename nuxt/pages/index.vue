@@ -7,11 +7,11 @@
       <el-form-item>
         <el-input v-model="input" placeholder="Please input" />
       </el-form-item>
-      <el-form-item>
+      <!-- <el-form-item>
         <el-button @click="onSearchUsers" type="primary" native-type="submit">
           検索する
         </el-button>
-      </el-form-item>
+      </el-form-item> -->
     </el-form>
     <el-table
       :data="users"
@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import debounce from 'lodash.debounce'
+
 const mockUsers = [
   { 'no': 1, 'name': '白井律子', 'nameKana': 'シライリツコ', 'sex': '女', 'birthDay': '1960-02-10T15:00:00.000Z' },
   { 'no': 2, 'name': '川本友菜', 'nameKana': 'カワモトユウナ', 'sex': '女', 'birthDay': '1966-07-18T15:00:00.000Z' },
@@ -59,6 +61,13 @@ const mockUsers = [
 export default {
   data () {
     return { allUsers: null, input: '', users: [] }
+  },
+  watch: {
+    input () {
+      debounce(() => {
+        this.onSearchUsers()
+      }, 200)()
+    }
   },
   asyncData (ctx) {
     return {
@@ -77,7 +86,9 @@ export default {
       })
     },
     searchUsers (query) {
-      this.users = this.allUsers.filter(user => user.name.includes(query))
+      this.users = this.allUsers.filter((user) => {
+        return String(user.no).includes(query) || user.name.includes(query) || user.nameKana.includes(query)
+      })
     },
     fetchAllUsers () {
       const promise = new Promise((resolve, reject) => {
@@ -99,11 +110,11 @@ export default {
 
 <style scoped>
 .container {
-  margin: 20px;
+  margin: 48px;
 }
 
 .title {
-  margin: 20px 0;
+  margin: 24px 0;
 }
 
 </style>
