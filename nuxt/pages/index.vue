@@ -1,64 +1,46 @@
 <template>
-  <div class="container">
+  <div>
+    <h1>
+      ユーザー検索
+    </h1>
+    <button @click="onSearchUsers">
+      検索する
+    </button>
     <div>
-      <logo />
-      <h1 class="title">
-        nuxt-gas-webapp
-      </h1>
-      <h2 class="subtitle">
-        My beautiful Nuxt.js project
-      </h2>
-      <div class="links">
-        <nuxt-link
-          to="dev"
-          class="button--green"
-        >
-          devページへ
-        </nuxt-link>
-      </div>
+      {{ users }}
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+const mockUsers = [
+  { 'no': 1, 'name': '白井律子', 'nameKana': 'シライリツコ', 'sex': '女', 'birthDay': '1960-02-10T15:00:00.000Z' },
+  { 'no': 2, 'name': '川本友菜', 'nameKana': 'カワモトユウナ', 'sex': '女', 'birthDay': '1966-07-18T15:00:00.000Z' },
+  { 'no': 3, 'name': '藤野鉄夫', 'nameKana': 'フジノテツオ', 'sex': '男', 'birthDay': '1995-01-23T15:00:00.000Z' }
+]
 export default {
-  components: {
-    Logo
+  data () {
+    return { users: [] }
+  },
+  asyncData (ctx) {
+    return {
+      isDev: ctx.isDev
+    }
+  },
+  methods: {
+    onSearchUsers () {
+      if (this.isDev) {
+        this.users = mockUsers
+      } else {
+        google.script.run.withSuccessHandler((res) => {
+          console.log(res)
+          this.users = res
+        }).fetchAllUser()
+      }
+    }
   }
 }
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
