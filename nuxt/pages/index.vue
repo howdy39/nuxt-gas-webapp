@@ -1,17 +1,17 @@
 <template>
   <div class="container">
-    <h1 class="title">
-      ユーザー検索
-    </h1>
+    <header class="header">
+      <h1 class="title">
+        ユーザー検索
+      </h1>
+      <a target="_blank" rel="noopener" href="https://docs.google.com/spreadsheets/d/1b6DzgycssKjEe1XPD2nNch_Q2y3t6yPY9rVlJGjVr1s/edit?folder=0Bwjf11kBj8AHMTQzTzFydnlKdm8#gid=0">
+        <i class="fas fa-user-cog" />
+      </a>
+    </header>
     <el-form :inline="true" @submit.native.prevent>
       <el-form-item>
         <el-input v-model="input" placeholder="Please input" />
       </el-form-item>
-      <!-- <el-form-item>
-        <el-button @click="onSearchUsers" type="primary" native-type="submit">
-          検索する
-        </el-button>
-      </el-form-item> -->
     </el-form>
     <el-table
       :data="users"
@@ -80,9 +80,13 @@ export default {
       if (this.allUsers !== null) {
         console.log('use cache')
         this.searchUsers(this.input)
+        return
       }
+
+      this.$nuxt.$loading.start()
       this.fetchAllUsers().then(() => {
         this.searchUsers(this.input)
+        this.$nuxt.$loading.finish()
       })
     },
     searchUsers (query) {
@@ -113,8 +117,20 @@ export default {
   margin: 48px;
 }
 
-.title {
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 24px 0;
+}
+
+.fas {
+  text-decoration: none;
+  color: #000000;
+  font-size: 24px;
+}
+.fas:hover {
+  opacity: 0.5;
 }
 
 </style>

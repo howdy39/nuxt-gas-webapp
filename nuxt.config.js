@@ -13,12 +13,15 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'https://kit.fontawesome.com/2b964bf635.js', crossorigin: 'anonymous' }
     ]
   },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#2f495e' },
   /*
   ** Global CSS
   */
