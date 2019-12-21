@@ -7502,6 +7502,18 @@ subarg@^1.0.0:
   dependencies:
     minimist "^1.1.0"
 
+sugar-core@^2.0.0:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/sugar-core/-/sugar-core-2.0.6.tgz#785e0cd64aa7302ea54d47bc1213efe52c006270"
+  integrity sha512-YmLFysR3Si6RImqL1+aB6JH81EXxvXn5iXhPf2PsjfoUYEwCxFDYCQY+zC3WqviuGWzxFaSkkJvkUE05Y03L5Q==
+
+sugar-language@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/sugar-language/-/sugar-language-2.0.6.tgz#a565501bc6c09282e4605fe3ce431a7b59c0ab00"
+  integrity sha512-YrnBLckvDyHVGU9o78z9D8m/IChLlHBeEY3YZgypo4BDGxVxP1K5rIp0yXlfm19MMU4ZoS259goDGrT6iXMFng==
+  dependencies:
+    sugar-core "^2.0.0"
+
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"

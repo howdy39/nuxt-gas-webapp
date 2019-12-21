@@ -20,13 +20,23 @@
       <el-table-column
         prop="no"
         label="No"
-        width="180"
       />
       <el-table-column
         prop="name"
         label="Name"
-        width="180"
-      />
+      >
+        <template slot-scope="scope">
+          <div class="cell">
+            <el-avatar
+              :size="24"
+              src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+              style="margin-right: 10px"
+            />
+            {{ scope.row.name }}
+          </div>
+        </template>
+      </el-table-column>
+
       <el-table-column
         prop="nameKana"
         label="NameKana"
@@ -45,7 +55,9 @@
 
 <script>
 import debounce from 'lodash.debounce'
+import katakana from 'sugar-language/string/katakana'
 
+// @see https://hogehoge.tk/personal/ 疑似個人情報データ生成サービス
 const mockUsers = [
   { 'no': 1, 'name': '白井律子', 'nameKana': 'シライリツコ', 'sex': '女', 'birthDay': '1960-02-10T15:00:00.000Z' },
   { 'no': 2, 'name': '川本友菜', 'nameKana': 'カワモトユウナ', 'sex': '女', 'birthDay': '1966-07-18T15:00:00.000Z' },
@@ -91,7 +103,7 @@ export default {
     },
     searchUsers (query) {
       this.users = this.allUsers.filter((user) => {
-        return String(user.no).includes(query) || user.name.includes(query) || user.nameKana.includes(query)
+        return String(user.no).includes(query) || user.name.includes(query) || user.nameKana.includes(query) || user.nameKana.includes(katakana(query))
       })
     },
     fetchAllUsers () {
@@ -122,6 +134,11 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin: 24px 0;
+}
+
+.cell {
+  display: flex;
+  padding: 0;
 }
 
 .fas {
