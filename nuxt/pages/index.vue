@@ -24,6 +24,7 @@
       <el-table-column
         prop="name"
         label="Name"
+        min-width="140"
       >
         <template slot-scope="scope">
           <div class="cell">
@@ -40,6 +41,7 @@
       <el-table-column
         prop="nameKana"
         label="NameKana"
+        min-width="120"
       />
       <el-table-column
         prop="sex"
@@ -48,6 +50,7 @@
       <el-table-column
         prop="birthDay"
         label="BirthDay"
+        min-width="200"
       />
     </el-table>
   </div>
@@ -125,8 +128,15 @@ export default {
 </script>
 
 <style scoped>
+
 .container {
-  margin: 48px;
+  margin: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    margin: 48px;
+  }
 }
 
 .header {
